@@ -65,6 +65,12 @@ RUN set -ex \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
+    && echo 'deb     http://ftp.de.debian.org/debian/    testing main contrib non-free' > /etc/apt/sources.list.d/testing.list \
+    && echo '' >> /etc/apt/sources.list.d/testing.list \
+    && echo 'deb-src http://ftp.de.debian.org/debian/    testing main contrib non-free' >> /etc/apt/sources.list.d/testing.list \
+    && apt-get update \
+    && apt-get -t testing -y install gdal-bin \
+    && apt-get clean \
     && rm -rf \
         /var/lib/apt/lists/* \
         /tmp/* \
