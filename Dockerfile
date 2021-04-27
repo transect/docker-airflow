@@ -70,6 +70,8 @@ RUN set -ex \
     && echo 'deb-src http://ftp.de.debian.org/debian/    testing main contrib non-free' >> /etc/apt/sources.list.d/testing.list \
     && apt-get update \
     && apt-get -t testing -y install gdal-bin \
+    && apt-get update \
+    && apt-get -t testing -y install postgis \
     && apt-get clean \
     && rm -rf \
         /var/lib/apt/lists/* \
